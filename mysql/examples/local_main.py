@@ -25,8 +25,6 @@ async def lifespan(app: FastAPI):
     yield
     
 app = FastAPI(lifespan=lifespan)
-    
-from fastapi import Depends
 
 @app.post("/items/")
 def create_item(item: Item):

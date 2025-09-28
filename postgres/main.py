@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-postgres_uri = os.getenv("DATABASE_URL")
+postgres_uri = os.getenv("SUPABASE_URL")
 
 from sqlmodel import SQLModel, Field
 from typing import Optional
@@ -48,5 +48,5 @@ from sqlmodel import select
 @app.get("/items/", response_model=List[Item])
 def read_items():
     with Session(engine) as session:
-        items = session.exec(select[Item]).all()
+        items = session.exec(select(Item)).all()
         return items
