@@ -1,10 +1,4 @@
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-postgres_uri = os.getenv("SUPABASE_URL")
-
+from postgres.conf import settings
 from sqlmodel import SQLModel, Field
 from typing import Optional
 
@@ -19,7 +13,7 @@ class Item(SQLModel, table=True):
     
 from sqlmodel import create_engine, Session
 
-engine = create_engine(postgres_uri, echo=True)
+engine = create_engine(settings.postgres_uri, echo=True)
 
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
